@@ -17,7 +17,7 @@ class ListViewItem extends React.Component {
 //     })
 //   }
 
-componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevProps.data !== prevState.data) {
       this.setState({data: props.data});
     }else return null; 

@@ -30,8 +30,8 @@ class OmniBox extends React.Component {
     this.props.updateDataList(dataList);  //  the updateDataList function of parent component'd be called.
   }
 
-  onKeyPress(event){
-    if (event.nativeEvent.key == 'Enter' && this.state.newValue) {
+  onKeyPress(){
+    if (this.state.newValue) {
       var newDataItem = new TodoModel(this.state.newValue);
 
       var dataList = this.props.data;
@@ -64,8 +64,18 @@ class OmniBox extends React.Component {
         clearButtonMode='while-editing'
         blurOnSubmit={false}
         value={this.state.newValue}
-        onKeyPress={this.onKeyPress}
+        // onKeyPress={this.onKeyPress} for multiline TextInput.
         onChange={this.onChange}
+        onSubmitEditing={this.onKeyPress}  //For single line TextInput,
+        // onKeyPress={ (event) => {
+        //   if(event.nativeEvent.key == "Enter"){
+        //       alert(event.nativeEvent.key) //called when multiline is true
+        //       // this.signIn();
+        //   } 
+        //   else {
+        //       alert('Something else Pressed') 
+        //   }
+        // }} for multiline TextInput.
         />
     );
   }
