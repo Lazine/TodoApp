@@ -7,21 +7,31 @@ class ListViewItem extends React.Component {
     super(props);
     this._onCheckBoxPressed = this._onCheckBoxPressed.bind(this);
     this.state = {
-      data: props.data
+      data: this.props.data
     }
   }
 
-//   componentWillReceiveProps(props) {
-//     this.setState({
-//       data: props.data
-//     })
-//   }
+  // componentWillReceiveProps(props) {
+  //   this.setState({
+  //     data: props.data
+  //   })
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.data !== prevState.data) {
-      this.setState({data: props.data});
-    }else return null; 
+  static getDerivedStateFromProps(props, state) {
+    if (props.data !== state.data) {
+      return { data: props.data }
+    }else{
+      return null
+    }
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevProps.data !== prevState.data) {
+  //     this.setState({data: this.props.data});
+  //   }else{
+  //     return null 
+  //   } 
+  // }
 
   _onCheckBoxPressed() {
     var data = this.state.data;
